@@ -1,11 +1,12 @@
 
 html{
-    height: 100vh;
+    height: 99vh;
     background: #7abad9;
 }
 .wrapper{
     width: 500px;
-    margin: 100px auto;
+    margin: 0px auto;
+    background: whitesmoke;
 }
 h3{
     text-align: center;
@@ -16,6 +17,10 @@ h3{
 
 .d-flex{
     display: flex;
+}
+
+.content-page.d-flex {
+    height: 90%;
 }
 .flex-1{
     flex: 1;
@@ -53,16 +58,22 @@ input, select {
     border-radius: 4px;
     cursor: pointer;
   }
-  
+  body{
+      height: 100%;
+  }
   input[type=button]:hover {
     background-color: #45a049;
   }
   
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
     padding: 20px;
   }
+
+.content-right {
+    background: white;
+    height: 100%;
+}
 
   input[type=button].addRow{
     background-color: #4949de;

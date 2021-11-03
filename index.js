@@ -19,12 +19,15 @@ class Binance {
 
         // Sự kiện khi submit
         me.initEventSubmit();
+
+        // Khởi tạo sự kiện taskbar
+        me.initEventClickTaskBar();
     }
 
     // Khởi tạo sự kiện cho input
     initEventInput() {
         // Khi nhập thì tự động viết hoa
-        $("input").on("keyup", function () {
+        $("input[type='text']").on("keyup", function () {
             let value = $(this).val();
 
             $(this).val(value.toLocaleUpperCase());
@@ -60,14 +63,18 @@ class Binance {
         let me = this;
 
         $(".submit").on("click", function(){
-           let valid = me.validateForm();
+            let valid = me.validateForm();
 
-           if(valid){
-
-           }else{
-               alert("Vui lòng nhập đủ thông tin");
-           }
+            if(valid){
+                me.showStep(2);
+                me.submitData();
+            }
         });
+    }
+
+    // Submit dữ liệu
+    submitData(){
+        let me = this;
     }
 
     // Validate form
@@ -83,7 +90,47 @@ class Binance {
             }
         });
 
+        if(!valid){
+            alert("Vui lòng nhập đủ thông tin");
+        }
+
         return valid;
+    }
+
+    // Khởi tạo sự kiện task bar
+    initEventClickTaskBar(){
+        let me = this;
+
+        // Khi click vào thiết lập
+        $(".setting-data").on("click", function(){
+           me.showStep(1);
+        });
+
+        // Khi click vào thống kê
+        $(".statistic-data").on("click", function(){
+            let valid = me.validateForm();
+
+            if(valid){
+                me.showStep(2);
+                me.submitData();
+            }
+        });
+
+        // Nạp lại dữ liệu mới
+        $(".refresh-data").on("click", function(){
+            me.submitData();
+        });
+    }
+
+    // Hiển thị step
+    showStep(step){
+        if(step == 1){
+            $(".setting, .statistic-data").show();
+            $(".table-result, .refresh-data, .setting-data").hide();
+        }else{
+            $(".setting, .statistic-data").hide();
+            $(".table-result, .refresh-data, .setting-data").show();
+        }
     }
 }
 
